@@ -3,6 +3,8 @@ import os
 import re
 
 # Styles and scripting for the page
+# This file is modified from the original file given in the Udacity Python Program
+# Foundations Course
 main_page_head = '''
 <head>
     <meta charset="utf-8">
@@ -105,8 +107,14 @@ main_page_content = '''
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+            <a class="navbar-brand" href="file:///Users/cassandracarr/Documents/version-control/learning-classes/movie-website/movies/fresh_tomatoes.html">Fresh Tomatoes</a>
           </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li><a href="file:///Users/cassandracarr/Documents/version-control/learning-classes/movie-website/movies/fresh_tomatoes.html">Movies</a></li>
+                  <li><a href="file:///Users/cassandracarr/Documents/version-control/learning-classes/movie-website/movies/fresh_tomatoes_tv.html">TV Shows</a></li>
+              </ul>
+           </div>
         </div>
       </div>
     </div>
@@ -142,7 +150,24 @@ def create_movie_tiles_content(movies):
         )
     return content
 
-def open_movies_page(movies):
+def create_tv_tiles_content(tvshows):
+    # The HTML content for this section of the page
+    content = ''
+    for tvshow in tvshows:
+        # Extract the youtube ID from the url
+        youtube_id_match = re.search(r'(?<=v=)[^&#]+', tvshow.trailer_youtube_url)
+        youtube_id_match = youtube_id_match or re.search(r'(?<=be/)[^&#]+', tvshow.trailer_youtube_url)
+        trailer_youtube_id = youtube_id_match.group(0) if youtube_id_match else None
+
+        # Append the tile for the movie with its content filled in
+        content += movie_tile_content.format(
+            movie_title=tvshow.title,
+            poster_image_url=tvshow.poster_image_url,
+            trailer_youtube_id=trailer_youtube_id
+        )
+    return content
+
+def open_movies_page(movies, tvshows):
   # Create or overwrite the output file
   output_file = open('fresh_tomatoes.html', 'w')
 
@@ -152,6 +177,16 @@ def open_movies_page(movies):
   # Output the file
   output_file.write(main_page_head + rendered_content)
   output_file.close()
+
+  # Create or overwrite the output tv file
+  output_file_tv = open('fresh_tomatoes_tv.html', 'w')
+
+  # Replace the placeholder for the tv show tiles with the actual dynamically generated content
+  rendered_content = main_page_content.format(movie_tiles=create_tv_tiles_content(tvshows))
+
+  # Output the tv file
+  output_file_tv.write(main_page_head + rendered_content)
+  output_file_tv.close()
 
   # open the output file in the browser
   url = os.path.abspath(output_file.name)
