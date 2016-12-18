@@ -13,7 +13,7 @@ mockingjay_part_2 = media.Movie("The Hunger Games: Mockingjay Part 2", "Katniss 
 movies = [toy_story, avatar, harry_potter_deathly_hallows, mockingjay_part_2]
 
 # Enter TV Show Content
-walking_dead = media.TvShow("The Walking Dead", "A group of individuals struggling through a world where the dead come back as zombies", "http://cdn.bgr.com/2015/01/the-walking-dead-season-5-trailer.png", "https://www.youtube.com/watch?v=R1v0uFms68U")
+walking_dead = media.TvShow("The Walking Dead", "A group of individuals struggling through a world where the dead come back as zombies", "http://static.tvgcdn.net/rovi/showcards/tvshow/303547/thumbs/16923352_957x1276.jpg", "https://www.youtube.com/watch?v=R1v0uFms68U")
 
 blacklist = media.TvShow("The Blacklist", "An ex-con helps the FBI take down the members of his blacklist", "https://s-media-cache-ak0.pinimg.com/originals/ba/8f/fa/ba8ffaf54d9990f58aacf71c258de835.jpg", "https://www.youtube.com/watch?v=JGBIimq1I3A")
 
