@@ -1,5 +1,4 @@
-Fresh Tomatoes Movie Website
-=======================================
+##Fresh Tomatoes Movie Website
 
 This movie website was done as a project through the Udacity
 Python Foundations Course. The original code was given through the class,
@@ -7,8 +6,7 @@ was used to learn about classes in Python, and was then expanded upon to add a T
 show section.
 
 
-How to run the code
-------------------------------
+###Example
 
 To run this code run the entertainment-center.py file.
 
